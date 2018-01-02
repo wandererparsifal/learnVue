@@ -26,7 +26,7 @@ const options = {
 };
 
 // 对所有新闻的get进行mock
-router.get('/all', (req, res) => {
+router.get('/main', (req, res) => {
   bucketManager.listPrefix(bucket, options, (err, respBody, respInfo) => {
     if (err) {
       console.log(err);

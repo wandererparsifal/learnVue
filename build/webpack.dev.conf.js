@@ -38,8 +38,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
     before(app) {
-      app.use('/mock/music', mockRouterMusic);
-      app.use('/mock/image', mockRouterImage);
+      app.use('/api/music', mockRouterMusic);
+      app.use('/api/image', mockRouterImage);
     },
   },
   plugins: [

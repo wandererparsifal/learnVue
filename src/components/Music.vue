@@ -33,7 +33,7 @@
       },
     },
     created() {
-      axios.get('/mock/music/all')
+      axios.get('/api/music/main')
         .then((response) => {
           console.log(response);
           if (response.data instanceof Array) {
