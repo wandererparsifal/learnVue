@@ -12,12 +12,26 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'carousel',
     data() {
       return {
-        images: ['../static/spring.jpg', '../static/summer.jpg', '../static/autumn.jpg', '../static/winter.jpg'],
+        images: [],
       };
+    },
+    created() {
+      axios.get('/api/image/carousel')
+        .then((response) => {
+          const data = response.data;
+          if (data instanceof Array) {
+            this.images = response.data;
+          }
+        })
+        .catch((response) => {
+          console.log(response);
+        });
     },
   };
 </script>

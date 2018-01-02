@@ -4,7 +4,7 @@
       <el-col :span="6" v-for="index in 2" :key="index">
         <el-card :body-style="{ padding: '0px' }">
           <img v-on:click="clickCard(item, index)"
-               src="/api/image/sss.jpg"
+               src="/api/image/name/sss.jpg"
                class="image">
           <div style="padding: 14px;">
             <span>好吃的汉堡</span>

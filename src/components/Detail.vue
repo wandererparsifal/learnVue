@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ detailNumber }}</h1>
-    <img src="/api/image/summer.jpg"/>
+    <img src="/api/image/name/summer.jpg"/>
   </div>
 </template>
 
