@@ -22,7 +22,7 @@
       };
     },
     created() {
-      axios.get('/api/image/carousel')
+      axios.get('/api/images/carousel')
         .then((response) => {
           const data = response.data;
           if (data instanceof Array) {

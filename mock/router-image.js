@@ -8,24 +8,27 @@ const path = require('path');
 const router = express.Router();
 
 // 对所有新闻的get进行mock
-router.get('/name/:name', (req, res) => {
-  fs.readFile(path.join(__dirname, '../static/', req.params.name), 'binary', (err, file) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.writeHead(200, { 'Content-Type': 'image/jpeg' });
-      res.write(file, 'binary');
-      res.end();
-    }
-  });
+router.get('/', (req, res) => {
+  const name = req.query.name;
+  if (name) {
+    fs.readFile(path.join(__dirname, '../static/', name), 'binary', (err, file) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+        res.write(file, 'binary');
+        res.end();
+      }
+    });
+  }
 });
 
 router.get('/carousel', (req, res) => {
   const images = [];
-  images.push('/api/image/name/spring.jpg');
-  images.push('/api/image/name/summer.jpg');
-  images.push('/api/image/name/autumn.jpg');
-  images.push('/api/image/name/winter.jpg');
+  images.push('/api/images?name=spring.jpg');
+  images.push('/api/images?name=summer.jpg');
+  images.push('/api/images?name=autumn.jpg');
+  images.push('/api/images?name=winter.jpg');
   res.json(images);
 });
 

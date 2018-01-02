@@ -39,7 +39,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     },
     before(app) {
       app.use('/api/music', mockRouterMusic);
-      app.use('/api/image', mockRouterImage);
+      app.use('/api/images', mockRouterImage);
     },
   },
   plugins: [
