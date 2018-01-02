@@ -1,9 +1,9 @@
 <template>
   <div class="grids">
-    <el-row :style="styleElRow" :gutter="20" type="flex" v-for="item in 5" :key="item" justify="center">
-      <el-col :span="6" v-for="index in 2" :key="index">
+    <el-row :style="styleElRow" :gutter="20" type="flex" v-for="row in 5" :key="row" justify="center">
+      <el-col :span="6" v-for="col in 2" :key="col">
         <el-card :body-style="{ padding: '0px' }">
-          <img v-on:click="clickCard(item, index)"
+          <img v-on:click="clickCard((((row - 1) * 2) + col) - 1)"
                src="/api/images?name=sss.jpg"
                class="image">
           <div style="padding: 14px;">
@@ -53,8 +53,7 @@
   export default {
     name: 'grids',
     methods: {
-      clickCard(row, col) {
-        const number = (((row - 1) * 2) + col) - 1;
+      clickCard(number) {
         console.log(number);
         // this.$router.push('/detail');
         this.$router.push({ name: 'Detail', params: { detailNumber: number } });
