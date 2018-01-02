@@ -2,7 +2,7 @@
   <div class="hello">
     <carousel></carousel>
     <h1>{{ msg }}</h1>
-    <music></music>
+    <!--<music></music>-->
     <grids id="grids"></grids>
     <div id="pageBlock">
       <el-pagination
