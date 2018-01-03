@@ -22,13 +22,14 @@
   import Carousel from './Carousel';
   import Grids from './Grids';
   import Music from './Music';
+  import EventBus from '../eventBus';
 
   export default {
     components: { Carousel, Grids, Music },
     name: 'hello',
     methods: {
       handleCurrentChange() {
-        console.log(this.currentPage);
+        EventBus.$emit('event_page_changed', this.currentPage);
       },
     },
     data() {

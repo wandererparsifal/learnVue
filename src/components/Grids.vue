@@ -21,6 +21,7 @@
 
 <script>
   import axios from 'axios';
+  import EventBus from '../eventBus';
 
   export default {
     name: 'grids',
@@ -56,6 +57,26 @@
         .catch((response) => {
           console.log(response);
         });
+      EventBus.$on('event_page_changed', (page) => {
+        const fromNum = (page - 1) * 10;
+        const toNum = fromNum + 9;
+        const str = [];
+        str.push('/api/grids?from=');
+        str.push(fromNum);
+        str.push('&to=');
+        str.push(toNum);
+        // 上一个 axios 请求需要取消
+        axios.get(str.join(''))
+          .then((response) => {
+            const data = response.data;
+            if (data instanceof Array) {
+              this.gridItems = response.data;
+            }
+          })
+          .catch((response) => {
+            console.log(response);
+          });
+      });
     },
     mounted() {
       window.onresize = () => {
