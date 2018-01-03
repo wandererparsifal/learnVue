@@ -31,6 +31,7 @@
         // this.$router.push('/detail');
         this.$router.push({ name: 'Detail', params: { detailNumber: number } });
       },
+      cancel() {},
     },
     data() {
       return {
@@ -47,7 +48,13 @@
       size.push('px');
       this.styleElRow.width = size.join('');
 
-      axios.get('/api/grids?from=0&to=9')
+      const CancelToken = axios.CancelToken;
+      axios.get('/api/grids?from=0&to=9', {
+        cancelToken: new CancelToken((c) => {
+          // executor 函数接收一个 cancel 函数作为参数
+          this.cancel = c;
+        }),
+      })
         .then((response) => {
           const data = response.data;
           if (data instanceof Array) {
@@ -65,8 +72,13 @@
         str.push(fromNum);
         str.push('&to=');
         str.push(toNum);
-        // 上一个 axios 请求需要取消
-        axios.get(str.join(''))
+        this.cancel();
+        axios.get(str.join(''), {
+          cancelToken: new CancelToken((c) => {
+            // executor 函数接收一个 cancel 函数作为参数
+            this.cancel = c;
+          }),
+        })
           .then((response) => {
             const data = response.data;
             if (data instanceof Array) {
