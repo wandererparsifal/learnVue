@@ -11,6 +11,7 @@ const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 const mockRouterMusic = require('../mock/router-music');
 const mockRouterImage = require('../mock/router-image');
+const mockRouterGrids = require('../mock/router-grids');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -40,6 +41,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     before(app) {
       app.use('/api/music', mockRouterMusic);
       app.use('/api/images', mockRouterImage);
+      app.use('/api/grids', mockRouterGrids);
     },
   },
   plugins: [
