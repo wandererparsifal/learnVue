@@ -2,7 +2,7 @@
   <div>
     <el-carousel :interval="5000" indicator-position="none">
       <el-carousel-item v-for="item in images" :key="item">
-        <div style="position:relative;">
+        <div style="position:relative;cursor:pointer" @click="handleItemClick(item)">
           　　<img :src="item"/>
           <h3 style="position:absolute; z-index:2; ; left: 0; top: 0; right: 0; bottom: 0; margin: auto;">{{item}}</h3>
         </div>
@@ -16,6 +16,11 @@
 
   export default {
     name: 'carousel',
+    methods: {
+      handleItemClick(data) {
+        console.log(data);
+      },
+    },
     data() {
       return {
         images: [],
